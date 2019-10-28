@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings
+        xmlns="http://xmlns.jcp.org/xml/ns/persistence/orm"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence/orm
+                  http://xmlns.jcp.org/xml/ns/persistence/orm_2_1.xsd"
+        version="2.1"
+>
+    <access>FIELD</access>
+    <mapped-superclass class="com.cristi.web.jobgram.domain.ddd.BaseEntity">
+        <attributes>
+            <embedded-id name="id"/>
+            <transient name="type"/>
+        </attributes>
+    </mapped-superclass>
+
+    <mapped-superclass class="com.cristi.web.jobgram.domain.ddd.BaseAggregateRoot">
+        <attributes>
+            <version name="version"/>
+        </attributes>
+    </mapped-superclass>
+
+    <embeddable class="com.cristi.web.jobgram.domain.UniqueId">
+        <attributes>
+            <basic name="value">
+                <column name="ID"/>
+            </basic>
+        </attributes>
+    </embeddable>
+
+    <embeddable class="com.cristi.web.jobgram.domain.Description">
+        <attributes>
+            <basic name="value">
+                <column name="DESCRIPTION"/>
+            </basic>
+        </attributes>
+    </embeddable>
+
+    <embeddable class="com.cristi.web.jobgram.domain.ShortLabel">
+        <attributes>
+            <basic name="value">
+                <column name="SHORT LABEL"/>
+            </basic>
+        </attributes>
+    </embeddable>
+</entity-mappings>
