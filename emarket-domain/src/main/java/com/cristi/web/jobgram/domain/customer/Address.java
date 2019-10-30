@@ -4,8 +4,6 @@ import com.cristi.web.jobgram.domain.ddd.BaseValueObject;
 import com.cristi.web.jobgram.domain.ddd.DDD;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
-import java.util.Collections;
 import java.util.List;
 
 import static java.util.Arrays.asList;

@@ -1,11 +1,14 @@
 package com.cristi.web.jobgram.domain.ddd;
 
+import javax.validation.constraints.NotNull;
+
 import static java.lang.String.format;
 import static java.util.Objects.requireNonNull;
 
 public abstract class BaseEntity<T extends BaseEntity<T, ID>, ID extends BaseValueObject<ID>> implements Validable<BaseEntity<T, ID>> {
     private Class<T> type;
 
+    @NotNull
     private final ID id;
 
     protected BaseEntity(Class<T> type, ID id) {
