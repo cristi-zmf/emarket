@@ -1,6 +1,5 @@
 package com.cristi.web.jobgram.domain;
 
-import com.cristi.web.jobgram.domain.ShortLabel;
 import com.cristi.web.jobgram.domain.ddd.DomainConstraintViolationException;
 import org.junit.Test;
 

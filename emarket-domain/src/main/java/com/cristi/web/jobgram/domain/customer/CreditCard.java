@@ -4,9 +4,7 @@ import com.cristi.web.jobgram.domain.ddd.BaseValueObject;
 
 import javax.validation.Payload;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
 import java.lang.annotation.*;
 import java.util.List;
 

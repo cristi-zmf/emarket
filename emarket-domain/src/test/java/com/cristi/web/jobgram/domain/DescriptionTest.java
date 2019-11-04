@@ -1,6 +1,5 @@
 package com.cristi.web.jobgram.domain;
 
-import com.cristi.web.jobgram.domain.Description;
 import com.cristi.web.jobgram.domain.ddd.DomainConstraintViolationException;
 import net.bytebuddy.utility.RandomString;
 import org.junit.Test;
