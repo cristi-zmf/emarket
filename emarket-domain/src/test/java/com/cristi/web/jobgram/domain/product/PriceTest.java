@@ -8,8 +8,8 @@ import java.math.BigDecimal;
 public class PriceTest {
 
     @Test(expected = DomainConstraintViolationException.class)
-    public void value_should_not_be_lower_than_0_2() {
-        new Price(new BigDecimal("0.1"));
+    public void value_should_not_be_lower_than_0() {
+        new Price(new BigDecimal("-0.1"));
     }
 
     @Test(expected = DomainConstraintViolationException.class)

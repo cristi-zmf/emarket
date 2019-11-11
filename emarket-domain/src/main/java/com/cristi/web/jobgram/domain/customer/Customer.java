@@ -1,5 +1,6 @@
 package com.cristi.web.jobgram.domain.customer;
 
+import com.cristi.web.jobgram.domain.Address;
 import com.cristi.web.jobgram.domain.UniqueId;
 import com.cristi.web.jobgram.domain.ddd.BaseAggregateRoot;
 import com.cristi.web.jobgram.domain.ddd.DDD;

@@ -25,4 +25,8 @@ public class Product extends BaseAggregateRoot<Product, UniqueId> {
         super(Product.class);
         this.price = null;
     }
+
+    public Price price() {
+        return price;
+    }
 }

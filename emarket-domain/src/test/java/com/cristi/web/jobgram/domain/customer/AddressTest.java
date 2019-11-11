@@ -1,5 +1,6 @@
 package com.cristi.web.jobgram.domain.customer;
 
+import com.cristi.web.jobgram.domain.Address;
 import com.cristi.web.jobgram.domain.ddd.DomainConstraintViolationException;
 import org.junit.Test;
 

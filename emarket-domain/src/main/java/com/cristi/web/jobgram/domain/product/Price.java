@@ -2,6 +2,7 @@ package com.cristi.web.jobgram.domain.product;
 
 import com.cristi.web.jobgram.domain.ddd.BaseValueObject;
 import com.cristi.web.jobgram.domain.ddd.DDD;
+import com.cristi.web.jobgram.domain.order.Quantity;
 
 import javax.validation.Payload;
 import javax.validation.constraints.DecimalMax;
@@ -30,6 +31,16 @@ public class Price extends BaseValueObject<Price> {
         return asList(value);
     }
 
+    public Price multiplyQuantity(Quantity quantity) {
+        return new Price(
+                value.multiply(new BigDecimal(quantity.getValue()))
+        );
+    }
+
+    public Price sumUp(Price price) {
+        return new Price(this.value.add(price.value));
+    }
+
     @Documented
     @Target({ElementType.FIELD, ElementType.PARAMETER})
     @Retention(RetentionPolicy.RUNTIME)
@@ -39,7 +50,7 @@ public class Price extends BaseValueObject<Price> {
     @javax.validation.Constraint(validatedBy = {})
     public @interface Constraint {
 
-        String MIN_VALUE = "0.2";
+        String MIN_VALUE = "0";
         String MAX_VALUE = "1000000.000";
 
         String message() default "Price should be between " + MIN_VALUE + " and " + MAX_VALUE;

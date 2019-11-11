@@ -1,4 +1,4 @@
-package com.cristi.web.jobgram.domain.customer;
+package com.cristi.web.jobgram.domain;
 
 import com.cristi.web.jobgram.domain.ddd.BaseValueObject;
 import com.cristi.web.jobgram.domain.ddd.DDD;
