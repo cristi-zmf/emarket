@@ -43,7 +43,14 @@ public class NamePart extends BaseValueObject<NamePart> {
     @Size(min = 2, max = 50)
     public @interface Constraint {
         String message() default "Name must be composed of letters with a size between 2 and 50";
+
         Class<?>[] groups() default  {};
         Class<? extends Payload>[] payload() default {};
+    }
+
+    /*USED BY JPA DONT USE IN PRODUCTION CODE*/
+    private NamePart() {
+        super(NamePart.class);
+        this.value = null;
     }
 }

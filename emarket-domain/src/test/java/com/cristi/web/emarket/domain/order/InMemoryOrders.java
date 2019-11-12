@@ -1,11 +1,15 @@
 package com.cristi.web.emarket.domain.order;
 
 import com.cristi.web.emarket.domain.UniqueId;
+import com.cristi.web.emarket.domain.ddd.DDD;
+import org.springframework.stereotype.Repository;
 
 import java.util.HashSet;
 import java.util.NoSuchElementException;
 import java.util.Set;
 
+@DDD.DomainRepositoryImpl
+@Repository
 public class InMemoryOrders implements Orders{
     private Set<Order> dbOrders = new HashSet<>();
     @Override

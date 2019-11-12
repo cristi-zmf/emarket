@@ -7,11 +7,13 @@ import com.cristi.web.emarket.domain.customer.Customers;
 import com.cristi.web.emarket.domain.ddd.DDD;
 import com.cristi.web.emarket.domain.order.*;
 import com.cristi.web.emarket.domain.product.Product;
+import org.springframework.context.annotation.Lazy;
 
 import static java.util.Collections.singletonList;
 
 @ApplicationService
 @DDD.ApplicationService
+@Lazy
 public class OrderProduct {
     private final Customers customers;
     private final Orders orders;

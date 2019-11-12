@@ -8,25 +8,22 @@
 >
     <access>FIELD</access>
     <entity class="com.cristi.web.emarket.domain.customer.Customer">
+        <table name="CUSTOMER"/>
         <attributes>
-            <
+            <element-collection name="orders">
+                <attribute-override name="value">
+                    <column name="ORDER_ID"/>
+                </attribute-override>
+                <collection-table name="CUSTOMER_ORDER">
+                    <join-column name="CUSTOMER_ID"/>
+                </collection-table>
+            </element-collection>
+            <embedded name="name"/>
+            <embedded name="address"/>
+            <embedded name="creditCard"/>
         </attributes>
     </entity>
-    <embeddable class="com.cristi.web.emarket.domain.UniqueId">
-        <attributes>
-            <basic name="value">
-                <column name="ID"/>
-            </basic>
-        </attributes>
-    </embeddable>
 
-    <embeddable class="com.cristi.web.emarket.domain.Description">
-        <attributes>
-            <basic name="value">
-                <column name="DESCRIPTION"/>
-            </basic>
-        </attributes>
-    </embeddable>
 
     <embeddable class="com.cristi.web.emarket.domain.customer.NamePart">
         <attributes>
@@ -47,6 +44,23 @@
                     <column name="LAST_NAME"/>
                 </attribute-override>
             </embedded>
+        </attributes>
+    </embeddable>
+    <embeddable class="com.cristi.web.emarket.domain.Address">
+        <attributes>
+            <basic name="streetName">
+                <column name="STREET_NAME"/>
+            </basic>
+            <basic name="streetNumber">
+                <column name="STREET_NUMBER"/>
+            </basic>
+        </attributes>
+    </embeddable>
+    <embeddable class="com.cristi.web.emarket.domain.customer.CreditCard">
+        <attributes>
+            <basic name="cardNumber">
+                <column name="CARD_NUMBER"/>
+            </basic>
         </attributes>
     </embeddable>
 </entity-mappings>

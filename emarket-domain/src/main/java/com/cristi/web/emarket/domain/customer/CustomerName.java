@@ -18,6 +18,12 @@ public class CustomerName extends BaseValueObject<CustomerName> {
         this.lastName = lastName;
     }
 
+    private CustomerName() {
+        super(CustomerName.class);
+        this.firstName = null;
+        this.lastName = null;
+    }
+
     public NamePart getFirstName() {
         return firstName;
     }

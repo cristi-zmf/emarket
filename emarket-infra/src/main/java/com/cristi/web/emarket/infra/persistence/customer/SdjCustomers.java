@@ -1,6 +1,9 @@
-package com.cristi.web.emarket.domain.customer;
+package com.cristi.web.emarket.infra.persistence.customer;
 
 import com.cristi.web.emarket.domain.UniqueId;
+import com.cristi.web.emarket.domain.customer.Customer;
+import com.cristi.web.emarket.domain.customer.Customers;
+import com.cristi.web.emarket.domain.customer.NamePart;
 import com.cristi.web.emarket.domain.ddd.DDD;
 import org.springframework.stereotype.Repository;
 

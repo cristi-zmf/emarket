@@ -7,6 +7,6 @@ Feature: Simple order of a product
   So that i can get the desired product
 Scenario: Customer places an order
 
-  Given there are no orders for the customer "George"
+  Given there are no orders for customer "George"
   When the customer buys a phone with a price of "1000"
   Then there is "1" order with "INITIATED" status for "George"

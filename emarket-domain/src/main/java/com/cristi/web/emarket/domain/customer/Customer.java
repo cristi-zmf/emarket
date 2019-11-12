@@ -22,9 +22,9 @@ public class Customer extends BaseAggregateRoot<Customer, UniqueId> {
     private Address address;
     private CreditCard creditCard;
     @NotNull
-    private Set<Order> orders;
+    private Set<UniqueId> orders;
 
-    Customer(UniqueId uniqueId, CustomerName name, Address address, CreditCard creditCard, Set<Order> orders) {
+    Customer(UniqueId uniqueId, CustomerName name, Address address, CreditCard creditCard, Set<UniqueId> orders) {
         super(Customer.class, uniqueId);
         this.name = name;
         this.address = address;
@@ -33,11 +33,11 @@ public class Customer extends BaseAggregateRoot<Customer, UniqueId> {
         validate(this);
     }
 
-    public Customer(CustomerName customerName, @NotNull Address address, @NotEmpty Set<Order> orders) {
+    public Customer(CustomerName customerName, @NotNull Address address, @NotEmpty Set<UniqueId> orders) {
         this(new UniqueId(), customerName, address, null, orders);
     }
 
-    public Set<Order> getOrders() {
+    public Set<UniqueId> getOrders() {
         return unmodifiableSet(orders);
     }
 
@@ -65,6 +65,6 @@ public class Customer extends BaseAggregateRoot<Customer, UniqueId> {
     }
 
     public void placeNewOrder(Order newOrder) {
-        orders.add(newOrder);
+        orders.add(newOrder.getId());
     }
 }

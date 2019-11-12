@@ -7,12 +7,12 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @Configuration
-@EnableJpaRepositories("com.cristi.web.jobgram")
+@EnableJpaRepositories("com.cristi.web.emarket")
 @EntityScan(
-        basePackages = {"com.cristi.web.jobgram", "org.springframework.data.jpa.convert.threeten"}
+        basePackages = {"com.cristi.web.emarket", "org.springframework.data.jpa.convert.threeten"}
 )
 @ComponentScan(
-        basePackages = {"com.cristi.web.jobgram"}
+        basePackages = {"com.cristi.web.emarket"}
 )
 @EnableAutoConfiguration
 public class PersistenceConfig {

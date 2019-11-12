@@ -12,7 +12,6 @@ import cucumber.api.java.en.When;
 
 import java.util.NoSuchElementException;
 
-import static com.cristi.web.emarket.domain.order.OrderStatus.INITIATED;
 import static java.util.Collections.emptySet;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -23,7 +22,7 @@ public class OrderProductSteps {
     private Customer someCustomer;
     private Product somePhone;
 
-    @Given("^there are no orders for the customer \"([^\"]*)\"$")
+    @Given("^there are no orders for customer \"([^\"]*)\"$")
     public void thereAreNoOrdersForTheCustomer(String firstname)  {
         CustomerName name = new CustomerName(new NamePart(firstname), new NamePart("Dont care"));
         someCustomer = new Customer(name, new Address("Cucu Street", 23), emptySet());
@@ -44,9 +43,9 @@ public class OrderProductSteps {
         assertThat(customer.getOrders()).hasSize(noOfOrders);
 
         UniqueId orderId = customer.getOrders().stream().findFirst()
-                .orElseThrow(NoSuchElementException::new).getId();
+                .orElseThrow(NoSuchElementException::new);
         Order actualOrder = inMemoryOrders.getOrThrow(orderId);
-        assertThat(actualOrder.status()).isEqualTo(INITIATED);
+        assertThat(actualOrder.status()).isEqualTo(expectedOrderStatus);
 
         Line singleLineOfOrder = actualOrder.orderLines().get(0);
         assertThat(singleLineOfOrder.productId()).isEqualTo(somePhone.getId());
