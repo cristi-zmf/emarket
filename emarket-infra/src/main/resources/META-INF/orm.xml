@@ -7,20 +7,20 @@
         version="2.1"
 >
     <access>FIELD</access>
-    <mapped-superclass class="com.cristi.web.jobgram.domain.ddd.BaseEntity">
+    <mapped-superclass class="com.cristi.web.emarket.domain.ddd.BaseEntity">
         <attributes>
             <embedded-id name="id"/>
             <transient name="type"/>
         </attributes>
     </mapped-superclass>
 
-    <mapped-superclass class="com.cristi.web.jobgram.domain.ddd.BaseAggregateRoot">
+    <mapped-superclass class="com.cristi.web.emarket.domain.ddd.BaseAggregateRoot">
         <attributes>
             <version name="version"/>
         </attributes>
     </mapped-superclass>
 
-    <embeddable class="com.cristi.web.jobgram.domain.UniqueId">
+    <embeddable class="com.cristi.web.emarket.domain.UniqueId">
         <attributes>
             <basic name="value">
                 <column name="ID"/>
@@ -28,7 +28,7 @@
         </attributes>
     </embeddable>
 
-    <embeddable class="com.cristi.web.jobgram.domain.Description">
+    <embeddable class="com.cristi.web.emarket.domain.Description">
         <attributes>
             <basic name="value">
                 <column name="DESCRIPTION"/>
@@ -36,7 +36,7 @@
         </attributes>
     </embeddable>
 
-    <embeddable class="com.cristi.web.jobgram.domain.ShortLabel">
+    <embeddable class="com.cristi.web.emarket.domain.ShortLabel">
         <attributes>
             <basic name="value">
                 <column name="SHORT LABEL"/>
