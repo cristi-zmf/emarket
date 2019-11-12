@@ -9,4 +9,5 @@ import java.util.Set;
 public interface Products {
     Set<Product> findAll(Set<UniqueId> productIds);
     Product getOrThrow(UniqueId productId);
+    Product add(Product product);
 }

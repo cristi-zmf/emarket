@@ -3,6 +3,7 @@ package com.cristi.web.jobgram.domain.order;
 import com.cristi.web.jobgram.domain.ddd.BaseValueObject;
 import com.cristi.web.jobgram.domain.ddd.DDD;
 
+import javax.validation.Payload;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -41,6 +42,8 @@ public class Quantity extends BaseValueObject<Quantity> {
     @Min(1)
     @Max(9999)
     public @interface Constraint {
-
+        String message() default "Quantity should be between 1 and 9999";
+        Class<?>[] groups() default  {};
+        Class<? extends Payload>[] payload() default {};
     }
 }

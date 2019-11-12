@@ -10,9 +10,11 @@ import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
 import java.lang.annotation.*;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 
-import static java.util.Arrays.asList;
+import static java.util.Collections.singletonList;
+import static org.hibernate.validator.internal.util.Contracts.assertNotNull;
 
 @DDD.ValueObject
 public class Price extends BaseValueObject<Price> {
@@ -22,13 +24,19 @@ public class Price extends BaseValueObject<Price> {
 
     public Price(BigDecimal value) {
         super(Price.class);
-        this.value = value;
+        assertNotNull(value);
+        this.value = value.setScale(2, RoundingMode.HALF_DOWN);;
         validate(this);
+    }
+
+
+    public Price(String value) {
+        this(new BigDecimal(value));
     }
 
     @Override
     protected List<Object> attributesToIncludeInEqualityCheck() {
-        return asList(value);
+        return singletonList(value);
     }
 
     public Price multiplyQuantity(Quantity quantity) {

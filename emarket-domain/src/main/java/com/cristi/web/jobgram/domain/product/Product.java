@@ -16,8 +16,8 @@ public class Product extends BaseAggregateRoot<Product, UniqueId> {
         this.price = price;
     }
 
-    public Product newProduct(Price price) {
-        return new Product(new UniqueId(), price);
+    public Product(Price price) {
+        this(new UniqueId(), price);
     }
 
     /*Used by JPA dont use in production code*/
