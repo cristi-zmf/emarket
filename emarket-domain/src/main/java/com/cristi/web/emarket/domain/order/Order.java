@@ -30,4 +30,8 @@ public class Order extends BaseAggregateRoot<Order, UniqueId> {
     public List<Line> orderLines() {
         return unmodifiableList(orderLines);
     }
+
+    public OrderStatus status() {
+        return status;
+    }
 }

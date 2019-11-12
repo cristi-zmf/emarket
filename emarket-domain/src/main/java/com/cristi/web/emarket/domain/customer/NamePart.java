@@ -13,6 +13,8 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 import java.util.List;
 
+import static java.util.Collections.singletonList;
+
 @DDD.ValueObject
 public class NamePart extends BaseValueObject<NamePart> {
     @Constraint
@@ -24,10 +26,13 @@ public class NamePart extends BaseValueObject<NamePart> {
         validate(this);
     }
 
+    public String getValue() {
+        return value;
+    }
 
     @Override
     protected List<Object> attributesToIncludeInEqualityCheck() {
-        return null;
+        return singletonList(value);
     }
 
     @Retention(RetentionPolicy.RUNTIME)
