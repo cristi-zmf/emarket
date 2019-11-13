@@ -1,10 +1,10 @@
 package com.cristi.web.emarket.domain.order;
 
+import com.cristi.web.emarket.domain.UniqueId;
 import com.cristi.web.emarket.domain.ddd.BaseValueObject;
+import com.cristi.web.emarket.domain.ddd.DDD;
 import com.cristi.web.emarket.domain.product.Price;
 import com.cristi.web.emarket.domain.product.Product;
-import com.cristi.web.emarket.domain.UniqueId;
-import com.cristi.web.emarket.domain.ddd.DDD;
 
 import javax.validation.constraints.NotNull;
 import java.util.List;
@@ -46,5 +46,11 @@ public class Line extends BaseValueObject<Line> {
             );
         }
         return typeOfProduct.price().multiplyQuantity(quantity);
+    }
+
+    private Line() {
+        super(Line.class);
+        this.quantity = null;
+        this.productId = null;
     }
 }

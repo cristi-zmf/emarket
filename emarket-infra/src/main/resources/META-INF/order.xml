@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings
+        xmlns="http://xmlns.jcp.org/xml/ns/persistence/orm"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence/orm
+                  http://xmlns.jcp.org/xml/ns/persistence/orm_2_1.xsd"
+        version="2.1"
+>
+    <access>FIELD</access>
+    <entity class="com.cristi.web.emarket.domain.order.Order">
+        <table name="ORDER_ITEM"/>
+        <attributes>
+            <basic name="status">
+                <enumerated>STRING</enumerated>
+            </basic>
+            <element-collection name="orderLines">
+                <collection-table name="ORDER_LINE">
+                    <join-column name="ORDER_ID"/>
+                </collection-table>
+            </element-collection>
+            <embedded name="customerId">
+                <attribute-override name="value">
+                    <column name="CUSTOMER_ID"/>
+                </attribute-override>
+            </embedded>
+        </attributes>
+    </entity>
+
+
+    <embeddable class="com.cristi.web.emarket.domain.order.Line">
+        <attributes>
+            <embedded name="quantity"/>
+            <embedded name="productId">
+                <attribute-override name="value">
+                    <column name="PRODUCT_ID"/>
+                </attribute-override>
+            </embedded>
+        </attributes>
+    </embeddable>
+
+    <embeddable class="com.cristi.web.emarket.domain.order.Quantity">
+        <attributes>
+            <basic name="value">
+                <column name="QUANTITY"/>
+            </basic>
+        </attributes>
+    </embeddable>
+</entity-mappings>

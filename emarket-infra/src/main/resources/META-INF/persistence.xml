@@ -8,5 +8,6 @@
 
         <mapping-file>META-INF/orm.xml</mapping-file>
         <mapping-file>META-INF/customer.xml</mapping-file>
+        <mapping-file>META-INF/order.xml</mapping-file>
     </persistence-unit>
 </persistence>

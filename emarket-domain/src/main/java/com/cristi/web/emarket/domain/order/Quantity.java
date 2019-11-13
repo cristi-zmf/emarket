@@ -46,4 +46,9 @@ public class Quantity extends BaseValueObject<Quantity> {
         Class<?>[] groups() default  {};
         Class<? extends Payload>[] payload() default {};
     }
+
+    private Quantity() {
+        super(Quantity.class);
+        value = 0;
+    }
 }

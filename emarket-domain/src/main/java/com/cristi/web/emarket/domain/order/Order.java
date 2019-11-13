@@ -16,13 +16,13 @@ public class Order extends BaseAggregateRoot<Order, UniqueId> {
     @NotNull
     private OrderStatus status;
     @NotNull
-    private UniqueId customer;
+    private UniqueId customerId;
 
-    public Order(List<Line> orderLines, OrderStatus status, UniqueId customer) {
+    public Order(List<Line> orderLines, OrderStatus status, UniqueId customerId) {
         super(Order.class, new UniqueId());
         this.orderLines = new ArrayList<>(orderLines);
         this.status = status;
-        this.customer = customer;
+        this.customerId = customerId;
         validate(this);
     }
 
@@ -35,6 +35,14 @@ public class Order extends BaseAggregateRoot<Order, UniqueId> {
     }
 
     public UniqueId getCustomerId() {
-        return customer;
+        return customerId;
+    }
+
+    /*Used by JPA dont use in production code!!!*/
+    Order() {
+        super(Order.class);
+        orderLines = new ArrayList<>();
+        customerId = null;
+        status = OrderStatus.INITIATED;
     }
 }

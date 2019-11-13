@@ -1,5 +1,6 @@
 package com.cristi.web.emarket.application.customer;
 
+import com.cristi.web.emarket.application.order.OrderProduct;
 import com.cristi.web.emarket.domain.Address;
 import com.cristi.web.emarket.domain.customer.*;
 import com.cristi.web.emarket.domain.order.*;
@@ -15,38 +16,39 @@ import static java.util.Collections.emptySet;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class OrderProductSteps {
-    private Customers inMemoryCustomers = new InMemoryCustomers();
-    private Orders inMemoryOrders = new InMemoryOrders();
-    private OrderProduct sut = new OrderProduct(inMemoryCustomers, inMemoryOrders);
+    private final Orders inMemoryOrders = new InMemoryOrders();
+    private final Customers inMemoryCustomers = new InMemoryCustomers();
+    private final OrderProduct sut = new OrderProduct(inMemoryOrders, inMemoryCustomers); // system under test
     private Customer someCustomer;
     private Product somePhone;
 
+
     @Given("^there are no orders for a customer$")
-    public void thereAreNoOrdersForTheCustomer()  {
-        CustomerName name = new CustomerName(new NamePart("John"), new NamePart("Doe"));
-        someCustomer = new Customer(name, new Address("Cucu Street", 23), emptySet());
+    public void thereAreNoOrdersForACustomer() {
+        CustomerName fullName = new CustomerName(new NamePart("John"), new NamePart("Doe"));
+        someCustomer = new Customer(fullName, new Address("Happy street", 10), emptySet());
         inMemoryCustomers.add(someCustomer);
 
         assertThat(inMemoryOrders.getAll()).isEmpty();
     }
 
     @When("^that customer buys a phone with a price of \"([^\"]*)\"$")
-    public void theCustomerBuysAPhoneWithAPriceOf(String price) {
+    public void thatCustomerBuysAPhoneWithAPriceOf(String price) {
         somePhone = new Product(new Price(price));
-        sut.orderProduct(someCustomer.getId(), somePhone, new Quantity(1));
+        sut.orderProduct(somePhone, new Quantity(1), someCustomer.getId());
     }
 
     @Then("^there is \"([^\"]*)\" \"([^\"]*)\" phone order for that customer$")
-    public void thereIsOrderWithStatusFor(int noOfOrders, OrderStatus expectedOrderStatus)  {
+    public void thereIsPhoneOrderForThatCustomer(int noOfOrders, OrderStatus expectedOrderStatus) {
         Set<Order> existingOrders = inMemoryOrders.getAll();
         assertThat(existingOrders).hasSize(noOfOrders);
 
         Order actualOrder = existingOrders.stream().findFirst().orElseThrow(IllegalStateException::new);
-        assertThat(actualOrder.getCustomerId()).isEqualTo(someCustomer.getId());
         assertThat(actualOrder.status()).isEqualTo(expectedOrderStatus);
+        assertThat(actualOrder.getCustomerId()).isEqualTo(someCustomer.getId());
 
-        Line singleLineOfOrder = actualOrder.orderLines().get(0);
-        assertThat(singleLineOfOrder.productId()).isEqualTo(somePhone.getId());
-        assertThat(singleLineOfOrder.quantity()).isEqualTo(new Quantity(1));
+        Line phoneOrderLine = actualOrder.orderLines().get(0);
+        assertThat(phoneOrderLine.productId()).isEqualTo(somePhone.getId());
+        assertThat(phoneOrderLine.quantity()).isEqualTo(new Quantity(1));
     }
 }
