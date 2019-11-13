@@ -22,24 +22,23 @@ public class OrderProductSteps {
     private Customer someCustomer;
     private Product somePhone;
 
-    @Given("^there are no orders for customer \"([^\"]*)\"$")
-    public void thereAreNoOrdersForTheCustomer(String firstname)  {
-        CustomerName name = new CustomerName(new NamePart(firstname), new NamePart("Dont care"));
+    @Given("^there are no orders for a customer$")
+    public void thereAreNoOrdersForTheCustomer()  {
+        CustomerName name = new CustomerName(new NamePart("John"), new NamePart("Doe"));
         someCustomer = new Customer(name, new Address("Cucu Street", 23), emptySet());
         assertThat(someCustomer.getOrders()).isEmpty(); //Being more royal than the king
         inMemoryCustomers.add(someCustomer);
     }
 
-    @When("^the customer buys a phone with a price of \"([^\"]*)\"$")
+    @When("^that customer buys a phone with a price of \"([^\"]*)\"$")
     public void theCustomerBuysAPhoneWithAPriceOf(String price) {
         somePhone = new Product(new Price(price));
         sut.orderProduct(someCustomer.getId(), somePhone, new Quantity(1));
     }
 
-    @Then("^there is \"([^\"]*)\" order with \"([^\"]*)\" status for \"([^\"]*)\"$")
-    public void thereIsOrderWithStatusFor(int noOfOrders, OrderStatus expectedOrderStatus, String customerName)  {
-        Customer customer = inMemoryCustomers.getByFirstname(new NamePart(customerName))
-                .stream().findFirst().orElseThrow(NoSuchElementException::new);
+    @Then("^there is \"([^\"]*)\" order with \"([^\"]*)\" status for that customer$")
+    public void thereIsOrderWithStatusFor(int noOfOrders, OrderStatus expectedOrderStatus)  {
+        Customer customer = inMemoryCustomers.getOrThrow(someCustomer.getId());
         assertThat(customer.getOrders()).hasSize(noOfOrders);
 
         UniqueId orderId = customer.getOrders().stream().findFirst()

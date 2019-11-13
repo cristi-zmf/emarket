@@ -64,7 +64,7 @@ public class Customer extends BaseAggregateRoot<Customer, UniqueId> {
         creditCard = null;
     }
 
-    public void placeNewOrder(Order newOrder) {
-        orders.add(newOrder.getId());
+    public void placeNewOrder(UniqueId newOrder) {
+        orders.add(newOrder);
     }
 }
