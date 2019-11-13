@@ -26,10 +26,8 @@ public class OrderProduct {
     public UniqueId orderProduct(UniqueId customerId, Product product, Quantity quantity) {
         Customer buyer = customers.getOrThrow(customerId);
         Line orderLine = new Line(quantity, product.getId());
-        Order newOrder = new Order(singletonList(orderLine), OrderStatus.INITIATED);
+        Order newOrder = new Order(singletonList(orderLine), OrderStatus.INITIATED, buyer.getId());
         orders.add(newOrder);
-        buyer.placeNewOrder(newOrder.getId());
-        customers.add(buyer);
         return newOrder.getId();
     }
 }

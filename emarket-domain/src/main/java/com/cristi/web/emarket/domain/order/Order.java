@@ -15,16 +15,15 @@ public class Order extends BaseAggregateRoot<Order, UniqueId> {
     private List<Line> orderLines;
     @NotNull
     private OrderStatus status;
+    @NotNull
+    private UniqueId customer;
 
-    public Order(UniqueId uniqueId, List<Line> orderLines, OrderStatus status) {
-        super(Order.class, uniqueId);
+    public Order(List<Line> orderLines, OrderStatus status, UniqueId customer) {
+        super(Order.class, new UniqueId());
         this.orderLines = new ArrayList<>(orderLines);
         this.status = status;
+        this.customer = customer;
         validate(this);
-    }
-
-    public Order(List<Line> orderLines, OrderStatus status) {
-        this(new UniqueId(), orderLines, status);
     }
 
     public List<Line> orderLines() {
@@ -33,5 +32,9 @@ public class Order extends BaseAggregateRoot<Order, UniqueId> {
 
     public OrderStatus status() {
         return status;
+    }
+
+    public UniqueId getCustomerId() {
+        return customer;
     }
 }

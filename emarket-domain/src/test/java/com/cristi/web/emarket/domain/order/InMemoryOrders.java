@@ -8,6 +8,8 @@ import java.util.HashSet;
 import java.util.NoSuchElementException;
 import java.util.Set;
 
+import static java.util.Collections.unmodifiableSet;
+
 @DDD.DomainRepositoryImpl
 @Repository
 public class InMemoryOrders implements Orders{
@@ -25,5 +27,10 @@ public class InMemoryOrders implements Orders{
         dbOrders.remove(order);
         dbOrders.add(order);
         return order;
+    }
+
+    @Override
+    public Set<Order> getAll() {
+        return unmodifiableSet(dbOrders);
     }
 }

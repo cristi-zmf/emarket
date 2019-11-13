@@ -1,5 +1,6 @@
 package com.cristi.web.emarket.domain.order;
 
+import com.cristi.web.emarket.domain.UniqueId;
 import com.cristi.web.emarket.domain.product.Products;
 import com.cristi.web.emarket.domain.product.InMemoryProducts;
 import com.cristi.web.emarket.domain.product.Price;
@@ -30,7 +31,7 @@ public class CalculateOrderTotalPriceTest {
     public void when_2_and_2_types_of_products_then_total_price_should_be_the_total_of_4_products() {
         Line smartphoneLine = new Line(new Quantity(2), smartphone.getId());
         Line tvLine = new Line(new Quantity(2), tv.getId());
-        Order order = new Order(asList(smartphoneLine, tvLine), OrderStatus.INITIATED);
+        Order order = new Order(asList(smartphoneLine, tvLine), OrderStatus.INITIATED, new UniqueId());
         inMemoryOrders.add(order);
         Price actualPrice = sut.totalPriceOfOrder(order.getId());
         assertThat(actualPrice).isEqualTo(new Price("9600"));
