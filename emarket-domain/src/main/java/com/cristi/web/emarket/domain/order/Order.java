@@ -11,12 +11,9 @@ import java.util.List;
 import static java.util.Collections.unmodifiableList;
 
 public class Order extends BaseAggregateRoot<Order, UniqueId> {
-    @NotEmpty
-    private List<Line> orderLines;
-    @NotNull
-    private OrderStatus status;
-    @NotNull
-    private UniqueId customerId;
+    @NotEmpty private List<Line> orderLines; //collection of VOs
+    @NotNull private OrderStatus status;
+    @NotNull private UniqueId customerId;
 
     public Order(List<Line> orderLines, OrderStatus status, UniqueId customerId) {
         super(Order.class, new UniqueId());
