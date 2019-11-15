@@ -1,20 +1,23 @@
 package com.cristi.web.emarket.domain.order;
 
 import com.cristi.web.emarket.domain.UniqueId;
+import com.cristi.web.emarket.domain.ddd.DDD;
 
 import java.util.HashSet;
 import java.util.NoSuchElementException;
 import java.util.Set;
 
-import static java.util.Collections.unmodifiableSet;
-
+@DDD.DomainRepositoryImpl //for tests
 public class InMemoryOrders implements Orders {
-    private final Set<Order> db = new HashSet<>();
+    private Set<Order> db = new HashSet<>();
+
 
     @Override
     public Order getOrThrow(UniqueId orderId) {
-        return db.stream().filter(e -> e.getId().equals(orderId))
-                .findFirst().orElseThrow(NoSuchElementException::new);
+        return db.stream()
+                .filter(e -> e.getId().equals(orderId))
+                .findFirst()
+                .orElseThrow(NoSuchElementException::new);
     }
 
     @Override
@@ -26,6 +29,6 @@ public class InMemoryOrders implements Orders {
 
     @Override
     public Set<Order> getAll() {
-        return unmodifiableSet(db);
+        return new HashSet<>(db);
     }
 }

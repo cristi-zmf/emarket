@@ -41,8 +41,8 @@ public class CalculateOrderTotalPrice {
         );
     }
 
-    private Price totalPriceForASingleTypeOfProduct(Map<UniqueId, Product> orderProducts, Line line) {
-        return line.totalPrice(orderProducts.get(line.productId()));
+    private Price totalPriceForASingleTypeOfProduct(Map<UniqueId, Product> orderProducts, Line orderLine) {
+        return orderLine.totalPrice(orderProducts.get(orderLine.productId()));
     }
 
 }

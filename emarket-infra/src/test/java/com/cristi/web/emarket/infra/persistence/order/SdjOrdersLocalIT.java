@@ -5,8 +5,8 @@ import com.cristi.web.emarket.domain.UniqueId;
 import com.cristi.web.emarket.domain.customer.Customer;
 import com.cristi.web.emarket.domain.customer.CustomerName;
 import com.cristi.web.emarket.domain.customer.NamePart;
-import com.cristi.web.emarket.domain.order.Line;
 import com.cristi.web.emarket.domain.order.Order;
+import com.cristi.web.emarket.domain.order.Line;
 import com.cristi.web.emarket.domain.order.OrderStatus;
 import com.cristi.web.emarket.domain.order.Quantity;
 import com.cristi.web.emarket.infra.persistence.InfraLocalIT;
@@ -15,69 +15,65 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.List;
 import java.util.Set;
 
+import static java.util.Arrays.asList;
 import static java.util.Collections.emptySet;
-import static java.util.Collections.singletonList;
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class SdjOrdersLocalIT extends InfraLocalIT {
     @Autowired
     private SdjOrders sut;
 
     @Autowired
-    private OrdersSdj ordersSdj;
-    @Autowired
-    private CustomersSdj customersSdj;
-    private Order someOrder;
-
+    private OrdersJpaRepo ordersJpaRepo;
+    @Autowired private CustomersSdj customersJpaRepo;
+    private Order order;
 
     @Before
     public void setUp() {
-        Customer someCustomer = someCustomer();
-        customersSdj.deleteAll();
-        customersSdj.saveAndFlush(someCustomer);
+        cleanUp();
 
-        ordersSdj.deleteAll();
-        someOrder = someOrder(someCustomer);
+        Customer someCustomer = someCustomer();
+        customersJpaRepo.saveAndFlush(someCustomer);
+        order = someOrder(someCustomer);
     }
 
     @Test
     public void getOrThrow() {
-        someOrder = ordersSdj.saveAndFlush(someOrder);
-
-        Order actualOrder = sut.getOrThrow(someOrder.getId());
-        assertThat(actualOrder).isEqualToComparingFieldByFieldRecursively(someOrder);
+        Order expectedOrder = ordersJpaRepo.saveAndFlush(order);
+        Order actualOrder = sut.getOrThrow(order.getId());
+        assertThat(actualOrder).isEqualToComparingFieldByFieldRecursively(expectedOrder);
     }
 
     @Test
     public void add() {
-        Order savedOrder = sut.add(someOrder);
-        Order expected = ordersSdj.getOne(someOrder.getId());
-
-        assertThat(savedOrder).isEqualToComparingFieldByFieldRecursively(expected);
+        Order actualOrder = sut.add(order);
+        Order expectedOrder = ordersJpaRepo.getOne(order.getId());
+        assertThat(actualOrder).isEqualToComparingFieldByFieldRecursively(expectedOrder);
     }
 
     @Test
     public void getAll() {
-        assertThat(ordersSdj.findAll()).isEmpty();
-        Order expected = ordersSdj.saveAndFlush(someOrder);
-
-        Set<Order> foundOrders = sut.getAll();
-
-        assertThat(foundOrders)
+        Order expectedOrder = ordersJpaRepo.saveAndFlush(this.order);
+        Set<Order> all = sut.getAll();
+        assertThat(all)
                 .usingFieldByFieldElementComparator()
-                .containsExactly(expected);
-    }
-
-    private Order someOrder(Customer someCustomer) {
-        List<Line> orderLines = singletonList(new Line(new Quantity(1), new UniqueId()));
-        return new Order(orderLines, OrderStatus.INITIATED, someCustomer.getId());
+                .containsExactly(expectedOrder);
     }
 
     private Customer someCustomer() {
-        CustomerName customerName = new CustomerName(new NamePart("John"), new NamePart("Doe"));
-        return new Customer(customerName, new Address("Happy street", 10), emptySet());
+        CustomerName fullName = new CustomerName(new NamePart("John"), new NamePart("Doe"));
+        return new Customer(fullName, new Address("Happy stree", 25), emptySet());
+    }
+
+    private void cleanUp() {
+        customersJpaRepo.deleteAll();
+        ordersJpaRepo.deleteAll();
+    }
+
+    private Order someOrder(Customer someCustomer) {
+        Line line = new Line(new Quantity(1), new UniqueId());
+        return new Order(asList(line), OrderStatus.INITIATED, someCustomer.getId());
     }
 }
