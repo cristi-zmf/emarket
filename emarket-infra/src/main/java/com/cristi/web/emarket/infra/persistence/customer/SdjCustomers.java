@@ -13,9 +13,9 @@ import java.util.Set;
 @DDD.DomainRepositoryImpl
 @Repository
 public class SdjCustomers implements Customers {
-    private final CustomersSdj sdj;
+    private final CustomersJpaRepo sdj;
 
-    public SdjCustomers(CustomersSdj sdj) {
+    public SdjCustomers(CustomersJpaRepo sdj) {
         this.sdj = sdj;
     }
 

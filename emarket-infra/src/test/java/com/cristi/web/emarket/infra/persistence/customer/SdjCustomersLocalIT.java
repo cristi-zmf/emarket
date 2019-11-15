@@ -21,7 +21,7 @@ public class SdjCustomersLocalIT extends InfraLocalIT {
     @Autowired
     private SdjCustomers sut;
     @Autowired
-    private CustomersSdj sdj;
+    private CustomersJpaRepo sdj;
     private final Customer customer1 = customer("John", "Doe", 21);
 
     private final Customer customer2 = customer("Michael", "Cheese", 23);
