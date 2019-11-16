@@ -13,7 +13,6 @@ import java.util.NoSuchElementException;
 import java.util.Set;
 
 import static java.util.Arrays.asList;
-import static java.util.Collections.emptySet;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class SdjCustomersLocalIT extends InfraLocalIT {
@@ -60,7 +59,7 @@ public class SdjCustomersLocalIT extends InfraLocalIT {
     private Customer customer(String firstName, String lastName, int streetNumber) {
         return new Customer(
                 new CustomerName(new NamePart(firstName), new NamePart(lastName)),
-                new Address("joy street", streetNumber), emptySet()
+                new Address("joy street", streetNumber)
         );
     }
 }

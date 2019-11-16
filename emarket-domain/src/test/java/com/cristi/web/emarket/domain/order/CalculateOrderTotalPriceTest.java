@@ -16,7 +16,7 @@ public class CalculateOrderTotalPriceTest {
     private Product smartphone = someSmartphone();
     private Product tv = someTV();
 
-    private Orders inMemoryOrders = new InMemoryOrders();
+    private Orders inMemoryOrders;
     private Products inMemoryProducts = new InMemoryProducts();
     private CalculateOrderTotalPrice sut = new CalculateOrderTotalPrice(inMemoryOrders, inMemoryProducts);
 
