@@ -31,6 +31,14 @@
             <scope>test</scope>
         </dependency>
 
+        <dependency>
+            <groupId>${project.group}</groupId>
+            <artifactId>emarket-domain</artifactId>
+            <!--<version>${project.version}</version>-->
+            <classifier>tests</classifier>
+            <scope>test</scope>
+        </dependency>
+
         <!--Public libraries-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
