@@ -2,9 +2,7 @@ package com.cristi.web.emarket.infra.persistence.order;
 
 import com.cristi.web.emarket.domain.Address;
 import com.cristi.web.emarket.domain.UniqueId;
-import com.cristi.web.emarket.domain.customer.Customer;
-import com.cristi.web.emarket.domain.customer.CustomerName;
-import com.cristi.web.emarket.domain.customer.NamePart;
+import com.cristi.web.emarket.domain.customer.*;
 import com.cristi.web.emarket.domain.order.Order;
 import com.cristi.web.emarket.domain.order.Line;
 import com.cristi.web.emarket.domain.order.OrderStatus;
@@ -17,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Set;
 
+import static java.time.LocalDateTime.now;
 import static java.util.Arrays.asList;
 import static java.util.Collections.emptySet;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -64,7 +63,8 @@ public class SdjOrdersLocalIT extends InfraLocalIT {
 
     private Customer someCustomer() {
         CustomerName fullName = new CustomerName(new NamePart("John"), new NamePart("Doe"));
-        return new Customer(fullName, new Address("Happy stree", 25), emptySet());
+        return new Customer(fullName, new Address("Happy stree", 25),
+                new PhoneNumber("+07222222"), new HistoricData(now(), now()), emptySet());
     }
 
     private void cleanUp() {

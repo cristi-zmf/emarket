@@ -45,7 +45,6 @@
         <jackson-datatype-jsr310.version>2.9.8</jackson-datatype-jsr310.version>
         <h2.version>1.4.199</h2.version>
         <flyway.version>5.2.4</flyway.version>
-        <ojdbc.version>12.1.0.2</ojdbc.version>
     </properties>
 
     <build>
@@ -260,11 +259,6 @@
                 <version>${flyway.version}</version>
             </dependency>
 
-            <dependency>
-                <groupId>com.oracle</groupId>
-                <artifactId>ojdbc7</artifactId>
-                <version>${ojdbc.version}</version>
-            </dependency>
             <!--Test frameworks-->
             <dependency>
                 <groupId>info.cukes</groupId>

@@ -1,9 +1,7 @@
 package com.cristi.web.emarket.infra.persistence.customer;
 
 import com.cristi.web.emarket.domain.Address;
-import com.cristi.web.emarket.domain.customer.Customer;
-import com.cristi.web.emarket.domain.customer.CustomerName;
-import com.cristi.web.emarket.domain.customer.NamePart;
+import com.cristi.web.emarket.domain.customer.*;
 import com.cristi.web.emarket.infra.persistence.InfraLocalIT;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.NoSuchElementException;
 import java.util.Set;
 
+import static java.time.LocalDateTime.now;
 import static java.util.Arrays.asList;
 import static java.util.Collections.emptySet;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -60,7 +59,8 @@ public class SdjCustomersLocalIT extends InfraLocalIT {
     private Customer customer(String firstName, String lastName, int streetNumber) {
         return new Customer(
                 new CustomerName(new NamePart(firstName), new NamePart(lastName)),
-                new Address("joy street", streetNumber), emptySet()
+                new Address("joy street", streetNumber),
+                new PhoneNumber("+07222222"), new HistoricData(now(), now()), emptySet()
         );
     }
 }

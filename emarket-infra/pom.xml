@@ -55,11 +55,6 @@
             <artifactId>flyway-core</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>com.oracle</groupId>
-            <artifactId>ojdbc7</artifactId>
-        </dependency>
-
         <!--Test frameworks-->
         <dependency>
             <groupId>info.cukes</groupId>
