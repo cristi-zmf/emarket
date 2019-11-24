@@ -21,6 +21,8 @@
             <embedded name="name"/>
             <embedded name="address"/>
             <embedded name="creditCard"/>
+            <embedded name="phoneNumber"/>
+            <embedded name="historicData"/>
         </attributes>
     </entity>
 
@@ -60,6 +62,23 @@
         <attributes>
             <basic name="cardNumber">
                 <column name="CARD_NUMBER"/>
+            </basic>
+        </attributes>
+    </embeddable>
+    <embeddable class="com.cristi.web.emarket.domain.customer.HistoricData">
+        <attributes>
+            <basic name="registrationDate">
+                <column name="REGISTRATION_DATE"/>
+            </basic>
+            <basic name="lastLoginDate">
+                <column name="LAST_LOGIN_DATE"/>
+            </basic>
+        </attributes>
+    </embeddable>
+    <embeddable class="com.cristi.web.emarket.domain.customer.PhoneNumber">
+        <attributes>
+            <basic name="value">
+                <column name="PHONE_NUMBER"/>
             </basic>
         </attributes>
     </embeddable>

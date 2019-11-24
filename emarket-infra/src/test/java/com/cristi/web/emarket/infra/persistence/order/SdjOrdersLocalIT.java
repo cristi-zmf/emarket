@@ -1,15 +1,18 @@
 package com.cristi.web.emarket.infra.persistence.order;
 
 import com.cristi.web.emarket.domain.customer.Customer;
-import com.cristi.web.emarket.domain.order.CustomerObjectMother;
-import com.cristi.web.emarket.domain.order.Order;
-import com.cristi.web.emarket.domain.order.OrderObjectMother;
+import com.cristi.web.emarket.domain.order.*;
+import com.cristi.web.emarket.domain.Address;
+import com.cristi.web.emarket.domain.UniqueId;
+import com.cristi.web.emarket.domain.customer.*;
 import com.cristi.web.emarket.infra.persistence.InfraLocalIT;
 import com.cristi.web.emarket.infra.persistence.customer.CustomersJpaRepo;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import static java.time.LocalDateTime.now;
+import static java.util.Arrays.asList;
 import static org.assertj.core.api.Assertions.assertThat;
 
 
@@ -51,5 +54,21 @@ public class SdjOrdersLocalIT extends InfraLocalIT {
         assertThat(sut.getAll())
                 .usingFieldByFieldElementComparator()
                 .containsExactly(expected);
+    }
+
+    private Customer someCustomer() {
+        CustomerName fullName = new CustomerName(new NamePart("John"), new NamePart("Doe"));
+        return new Customer(fullName, new Address("Happy stree", 25),
+                new PhoneNumber("+07222222"), new HistoricData(now(), now()));
+    }
+
+    private void cleanUp() {
+        customersJpaRepo.deleteAll();
+        ordersJpaRepo.deleteAll();
+    }
+
+    private Order someOrder(Customer someCustomer) {
+        Line line = new Line(new Quantity(1), new UniqueId());
+        return new Order(asList(line), OrderStatus.INITIATED, someCustomer.getId());
     }
 }

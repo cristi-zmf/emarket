@@ -259,7 +259,6 @@
                 <version>${flyway.version}</version>
             </dependency>
 
-
             <!--Test frameworks-->
             <dependency>
                 <groupId>info.cukes</groupId>

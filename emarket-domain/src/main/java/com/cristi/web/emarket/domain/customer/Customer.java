@@ -15,17 +15,23 @@ public class Customer extends BaseAggregateRoot<Customer, UniqueId> {
     @NotNull
     private Address address;
     private CreditCard creditCard;
+    private PhoneNumber phoneNumber;
+    private HistoricData historicData;
 
-    Customer(UniqueId uniqueId, CustomerName name, Address address, CreditCard creditCard) {
+    Customer(UniqueId uniqueId, CustomerName name, Address address, CreditCard creditCard,
+             PhoneNumber phoneNumber, HistoricData historicData) {
         super(Customer.class, uniqueId);
         this.name = name;
         this.address = address;
         this.creditCard = creditCard;
+        this.phoneNumber = phoneNumber;
+        this.historicData = historicData;
         validate(this);
     }
 
-    public Customer(CustomerName customerName, @NotNull Address address) {
-        this(new UniqueId(), customerName, address, null);
+    public Customer(CustomerName customerName, @NotNull Address address,
+                    PhoneNumber phoneNumber, HistoricData historicData) {
+        this(new UniqueId(), customerName, address, null, phoneNumber, historicData);
     }
 
     public NamePart getFirstName() {
