@@ -19,7 +19,7 @@ public class SdjCustomers implements Customers {
         this.sdj = sdj;
     }
 
-    @Override
+    @Override   
     public Set<Customer> getByFirstname(NamePart firstName) {
         return sdj.findByNameFirstNameValueContaining(firstName.getValue());
     }
