@@ -1,12 +1,12 @@
 package com.cristi.web.emarket.domain;
 
 import com.cristi.web.emarket.domain.ddd.DDD;
-import com.cristi.web.emarket.domain.ddd.Validable;
+import com.cristi.web.emarket.domain.ddd.Validatable;
 
 import javax.validation.constraints.NotNull;
 
 @DDD.DomainEntity
-public class DomainEntity implements Validable<DomainEntity> {
+public class DomainEntity implements Validatable<DomainEntity> {
     @NotNull private UniqueId id;
     @NotNull private ShortLabel title;
     @NotNull private Description description;

@@ -5,7 +5,7 @@ import javax.validation.constraints.NotNull;
 import static java.lang.String.format;
 import static java.util.Objects.requireNonNull;
 
-public abstract class BaseEntity<T extends BaseEntity<T, ID>, ID extends BaseValueObject<ID>> implements Validable<BaseEntity<T, ID>> {
+public abstract class BaseEntity<T extends BaseEntity<T, ID>, ID extends BaseValueObject<ID>> implements Validatable<BaseEntity<T, ID>> {
     private Class<T> type;
 
     @NotNull

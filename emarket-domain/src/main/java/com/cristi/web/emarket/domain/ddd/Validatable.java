@@ -8,7 +8,7 @@ import java.util.Set;
 
 import static java.lang.String.format;
 
-public interface Validable<T> {
+public interface Validatable<T> {
     ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
     Validator validator = factory.getValidator();
 
