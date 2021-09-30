@@ -47,7 +47,7 @@ public class Line extends BaseValueObject<Line> {
         }
         return typeOfProduct.price().multiplyQuantity(quantity);
     }
-
+/*USED BY JPA DONT USE IN PRODUCTION CODE*/
     private Line() {
         super(Line.class);
         this.quantity = null;
