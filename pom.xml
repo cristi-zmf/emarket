@@ -43,7 +43,7 @@
         <jsr250.version>1.0</jsr250.version>
         <jsonpath.version>2.4.0</jsonpath.version>
         <jackson-datatype-jsr310.version>2.9.8</jackson-datatype-jsr310.version>
-        <h2.version>1.4.199</h2.version>
+        <h2.version>2.1.210</h2.version>
         <flyway.version>5.2.4</flyway.version>
     </properties>
 
