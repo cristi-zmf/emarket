@@ -6,5 +6,5 @@ Feature: Simple order of a product
 
 Scenario: Customer places an order
   Given there are no orders for a customer
-  When that customer buys a phone with a price of "1000"
+  When that customer buys a phone
   Then there is "1" "INITIATED" phone order for that customer
